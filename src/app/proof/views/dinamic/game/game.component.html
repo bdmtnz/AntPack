@@ -20,15 +20,14 @@
           <form [formGroup]="gameResult">
             <ng-template matStepLabel>Play game</ng-template>
             <div class="selections">
-                <app-selector [number]="this.reactive.controls.jugador1.value" (selected)="setResultPlayer1($event)"></app-selector>
-                <app-selector [number]="this.reactive.controls.jugador2.value" (selected)="setResultPlayer2($event)"></app-selector>
+                <app-selector [number]="this.reactive.controls.jugador1.value" [reset]="reset" (selected)="setResultPlayer1($event)"></app-selector>
+                <app-selector [number]="this.reactive.controls.jugador2.value" [reset]="reset" (selected)="setResultPlayer2($event)"></app-selector>
             </div>
             <div class="result">
                 <h1>{{winner}}</h1>
             </div>
             <div>
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
             </div>
           </form>
         </mat-step>

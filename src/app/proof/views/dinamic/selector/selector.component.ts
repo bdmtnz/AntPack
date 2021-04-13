@@ -11,6 +11,7 @@ import { Scissor } from 'src/app/proof/models/scissor';
 })
 export class SelectorComponent implements OnInit {
   @Input() number:any;
+  @Input() reset:any;
   @Output() selected = new EventEmitter<Artifact>();
   scissor:Scissor;
   rock:Rock;
@@ -25,6 +26,11 @@ export class SelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  resetChoose(){
+    this.select = new Artifact();
+    return '';
   }
 
   selection(artifact:Artifact){

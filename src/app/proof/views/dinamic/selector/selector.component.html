@@ -5,5 +5,5 @@
         <img src="https://www.svgrepo.com/show/87525/hand.svg" alt="paper" (click)="selection(paper)">
         <img src="https://www.svgrepo.com/show/165161/punch.svg" alt="rock" (click)="selection(rock)">
     </div>
-    <h4>{{select.name}}</h4>
+    <h4>{{reset ? resetChoose() : select.name}}</h4>
 </div>

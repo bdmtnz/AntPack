@@ -12,6 +12,7 @@ export class GameComponent implements OnInit {
   reactive:FormGroup;
   gameResult:FormGroup;
   winner:string;
+  reset:boolean;
 
   constructor(private builder:FormBuilder) { 
     this.reactive = this.builder.group({
@@ -23,6 +24,7 @@ export class GameComponent implements OnInit {
       jugador2: ['', Validators.required],
     });
     this.winner = "?";
+    this.reset = false;
   }
 
   ngOnInit(): void {
@@ -44,13 +46,16 @@ export class GameComponent implements OnInit {
     if(this.gameResult.valid){
       let result = this.gameResult.controls.jugador1.value.win(this.gameResult.controls.jugador2.value);
       if(result != undefined)
-        this.winner = `Player ${result ? this.reactive.controls.jugador1.value: this.reactive.controls.jugador2.value} won`;
+        this.winner = `Player ${result ? this.reactive.controls.jugador1.value: this.reactive.controls.jugador2.value} 
+                      won (${this.gameResult.controls.jugador1.value.name} vs ${this.gameResult.controls.jugador2.value.name})`;
       else
-        this.winner = "Tied game";
-      //this.gameResult.reset();
+        this.winner = `Tied game (${this.gameResult.controls.jugador1.value.name} vs ${this.gameResult.controls.jugador2.value.name})`;
+      this.gameResult.reset();
+      this.reset = true;
     }
     else{
       this.winner = "?";
+      this.reset = false;
     }
   }
 
