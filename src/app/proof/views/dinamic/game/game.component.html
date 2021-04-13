@@ -1,0 +1,37 @@
+<div class="root">    
+    <mat-vertical-stepper [linear]="false" #stepper>
+        <mat-step [stepControl]="reactive">
+          <form [formGroup]="reactive">
+            <ng-template matStepLabel>Fill out yours names</ng-template>
+            <mat-form-field>
+              <mat-label>Player 1</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="jugador1" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Player 2</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="jugador2" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="gameResult">
+          <form [formGroup]="gameResult">
+            <ng-template matStepLabel>Play game</ng-template>
+            <div class="selections">
+                <app-selector [number]="this.reactive.controls.jugador1.value" (selected)="setResultPlayer1($event)"></app-selector>
+                <app-selector [number]="this.reactive.controls.jugador2.value" (selected)="setResultPlayer2($event)"></app-selector>
+            </div>
+            <div class="result">
+                <h1>{{winner}}</h1>
+            </div>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+    </mat-vertical-stepper>
+
+</div>
