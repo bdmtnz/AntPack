@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Artifact } from 'src/app/proof/models/artifact';
-import { SelectorComponent } from '../selector/selector.component';
 
 @Component({
   selector: 'app-game',
@@ -45,9 +44,9 @@ export class GameComponent implements OnInit {
     if(this.gameResult.valid){
       let result = this.gameResult.controls.jugador1.value.win(this.gameResult.controls.jugador2.value);
       if(result != undefined)
-        this.winner = `El jugador ${result ? this.reactive.controls.jugador1.value: this.reactive.controls.jugador2.value} ha ganado`;
+        this.winner = `Player ${result ? this.reactive.controls.jugador1.value: this.reactive.controls.jugador2.value} won`;
       else
-        this.winner = "Ha habido un empate";
+        this.winner = "Tied game";
       //this.gameResult.reset();
     }
     else{
